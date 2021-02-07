@@ -21,6 +21,8 @@
 					<exportAll>true</exportAll>
 					<testFailIgnore>true</testFailIgnore>
 					<junitReport>true</junitReport>
+						<reportName>Project Report</reportName>
+						<reportFormat>PDF</reportFormat>
 				</configuration>
 				<executions>
 					<execution>
