@@ -18,12 +18,12 @@
     xmlns:cxf="http://camel.apache.org/schema/cxf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring https://camel.apache.org/schema/spring/camel-spring.xsd        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd    ">
     <cxf:cxfEndpoint address="/cxf/report" id="reportEndpoint"
-        serviceClass="com.nileshpoc.camel.cxf.incident.IncidentService" serviceName="IncidentService"/>
+        serviceClass="com.nileshpoc.camel.cxf.incident.IncidentServicePortType" serviceName="IncidentService"/>
     <bean
         class="com.nileshpoc.camel.cxf.incident.ReportIncidentProcessor" id="reportIncidentProcessor"/>
     <bean
         class="com.nileshpoc.camel.cxf.incident.StatusIncidentProcessor" id="statusIncidentProcessor"/>
-    <camelContext id="camelContext-c1100b64-c8cb-4fa6-b382-5eea0e303c95" xmlns="http://camel.apache.org/schema/spring">
+    <camelContext id="camelContext-id" xmlns="http://camel.apache.org/schema/spring">
         <route id="cxf">
             <!-- route starts from the cxf webservice in POJO mode -->
             <from id="reportEndpointListener" uri="cxf:bean:reportEndpoint"/>

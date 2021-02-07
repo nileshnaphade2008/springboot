@@ -27,7 +27,7 @@ public class StatusIncidentProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
         // set reply
-        OutputStatusIncident output = new OutputStatusIncident();
+        StatusIncidentResponse output = new StatusIncidentResponse();
         output.setStatus("IN PROGRESS");
         exchange.getOut().setBody(output);
     }
