@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nileshpoc</groupId>
+	<artifactId>reportservice-jmeter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.lazerycode.jmeter</groupId>
+			<artifactId>jmeter-analysis-maven-plugin</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>com.lazerycode.jmeter</groupId>
+				<artifactId>jmeter-maven-plugin</artifactId>
+				<!-- <version>2.1.0</version> -->
+				<version>2.7.0</version>
+				<executions>
+					<!-- Generate JMeter configuration -->
+					<execution>
+						<id>configuration</id>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
+					<!-- Run JMeter tests -->
+					<execution>
+						<id>tests</id>
+						<goals>
+							<goal>jmeter</goal>
+						</goals>
+					</execution>
+					<!-- Fail build on errors in test -->
+					<execution>
+						<id>jmeter-check-results</id>
+						<goals>
+							<goal>results</goal>
+						</goals>
+					</execution>	
+				</executions>
+				<configuration>
+                    <testFilesIncluded>
+                        <jMeterTestFile>*.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+                </configuration>
+			</plugin>
+			<!-- <plugin>
+				<groupId>com.lazerycode.jmeter</groupId>
+				<artifactId>jmeter-analysis-maven-plugin</artifactId>
+				<version>1.0.6</version>
+
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>analyze</goal>
+						</goals>
+						<configuration>
+							<source>${project.build.directory}/**/*.jtl</source>
+							<targetDirectory>${project.build.directory}/results</targetDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
+		</plugins>
+
+	</build>
+
+</project>
