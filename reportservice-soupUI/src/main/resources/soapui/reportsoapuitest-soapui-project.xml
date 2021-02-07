@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="bf08a6bf-e4bb-4263-9911-8c539ac9a788" activeEnvironment="Default" name="reportsoapuitest" resourceRoot="" soapui-version="5.6.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="ce56a498-6209-43fe-914e-099eda04991e" wsaVersion="NONE" name="IncidentServiceSoapBinding" type="wsdl" bindingName="{http://www.springframework.org/schema/beans}IncidentServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8006/service/cxf/report?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8006/service/cxf/report?wsdl"><con:part><con:url>http://localhost:8006/service/cxf/report?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IncidentService" targetNamespace="http://www.springframework.org/schema/beans" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.springframework.org/schema/beans" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://incident.cxf.camel.nileshpoc.com/">
+  <wsdl:import location="http://localhost:8006/service/cxf/report?wsdl=IncidentServicePortType.wsdl" namespace="http://incident.cxf.camel.nileshpoc.com/"></wsdl:import>
+  <wsdl:binding name="IncidentServiceSoapBinding" type="ns1:IncidentServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="statusIncident">
+      <soap:operation soapAction="http://incident.cxf.camel.nileshpoc.com/statusIncident" style="document"/>
+      <wsdl:input name="statusIncident">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="statusIncidentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportIncident">
+      <soap:operation soapAction="http://incident.cxf.camel.nileshpoc.com/reportIncident" style="document"/>
+      <wsdl:input name="reportIncident">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="reportIncidentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IncidentService">
+    <wsdl:port binding="tns:IncidentServiceSoapBinding" name="IncidentServicePortTypePort">
+      <soap:address location="http://localhost:8006/service/cxf/report"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8006/service/cxf/report?wsdl=IncidentServicePortType.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IncidentServicePortType" targetNamespace="http://incident.cxf.camel.nileshpoc.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://incident.cxf.camel.nileshpoc.com/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://incident.cxf.camel.nileshpoc.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="inputReportIncident">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="details" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="familyName" type="xs:string"/>
+            <xs:element name="givenName" type="xs:string"/>
+            <xs:element name="incidentDate" type="xs:string"/>
+            <xs:element name="incidentId" type="xs:string"/>
+            <xs:element name="phone" type="xs:string"/>
+            <xs:element name="summary" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="inputStatusIncident">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="incidentId" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="outputReportIncident">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="statusIncidentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="status" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="statusIncident">
+    <wsdl:part element="ns1:inputStatusIncident" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reportIncident">
+    <wsdl:part element="ns1:inputReportIncident" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reportIncidentResponse">
+    <wsdl:part element="ns1:outputReportIncident" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="statusIncidentResponse">
+    <wsdl:part element="ns1:statusIncidentResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IncidentServicePortType">
+    <wsdl:operation name="statusIncident">
+      <wsdl:input message="ns1:statusIncident" name="statusIncident"></wsdl:input>
+      <wsdl:output message="ns1:statusIncidentResponse" name="statusIncidentResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportIncident">
+      <wsdl:input message="ns1:reportIncident" name="reportIncident"></wsdl:input>
+      <wsdl:output message="ns1:reportIncidentResponse" name="reportIncidentResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint></con:endpoints><con:operation id="41468db0-3fa1-446b-a5f4-8dd1707972f6" isOneWay="false" action="http://incident.cxf.camel.nileshpoc.com/reportIncident" name="reportIncident" bindingOperationName="reportIncident" type="Request-Response" outputName="reportIncidentResponse" inputName="reportIncident" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3a586bc3-f2db-431c-ae6f-273339e23980" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://incident.cxf.camel.nileshpoc.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <inc:inputReportIncident>\r
+         <details>?</details>\r
+         <email>?</email>\r
+         <familyName>?</familyName>\r
+         <givenName>?</givenName>\r
+         <incidentDate>?</incidentDate>\r
+         <incidentId>?</incidentId>\r
+         <phone>?</phone>\r
+         <summary>?</summary>\r
+      </inc:inputReportIncident>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incident.cxf.camel.nileshpoc.com/reportIncident"/></con:call></con:operation><con:operation id="6ed011f3-9ce2-4ee1-8891-85f358a0a5c7" isOneWay="false" action="http://incident.cxf.camel.nileshpoc.com/statusIncident" name="statusIncident" bindingOperationName="statusIncident" type="Request-Response" outputName="statusIncidentResponse" inputName="statusIncident" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="79168242-f848-4562-bbac-0675a5941842" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://incident.cxf.camel.nileshpoc.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <inc:inputStatusIncident>\r
+         <incidentId>?</incidentId>\r
+      </inc:inputStatusIncident>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incident.cxf.camel.nileshpoc.com/statusIncident"/></con:call></con:operation></con:interface><con:testSuite id="298dad52-dc68-4a38-894a-f2d852c7f9f8" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="3e94fa2c-405e-4e74-91cb-01812bc062df" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="689229cd-c07e-4c05-b61c-3fa504025ddc" name="reportIncident - success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IncidentServiceSoapBinding</con:interface><con:operation>reportIncident</con:operation><con:request name="reportIncident - success" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="bd96686e-1b76-4dd2-83c2-1c5a4e053a50"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://incident.cxf.camel.nileshpoc.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <inc:inputReportIncident>\r
+         <details>?</details>\r
+         <email>?</email>\r
+         <familyName>?</familyName>\r
+         <givenName>?</givenName>\r
+         <incidentDate>?</incidentDate>\r
+         <incidentId>?</incidentId>\r
+         <phone>?</phone>\r
+         <summary>?</summary>\r
+      </inc:inputReportIncident>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="97cc404a-24cc-471e-b73f-2791a3f96324" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incident.cxf.camel.nileshpoc.com/reportIncident"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="fail" id="d33771f6-05f8-4792-b40c-8e0a28639e99"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IncidentServiceSoapBinding</con:interface><con:operation>reportIncident</con:operation><con:request name="fail" id="29834347-8014-4e43-a1e8-664565757aec"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://incident.cxf.camel.nileshpoc.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <inc:inputReportIncident>\r
+         <details>?</details>\r
+         <email>?</email>\r
+         <familyName>?</familyName>\r
+         <givenName>?</givenName>\r
+         <incidentDate>?</incidentDate>\r
+         <incidentId>?</incidentId>\r
+         <phone>?</phone>\r
+         <summary>?</summary>\r
+      </inc:inputReportIncident>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8d3975ee-c9ca-432e-8bd8-77ad81072b58"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="1aa43831-a3a5-4850-88b3-9e2781282edf" name="TestSuite 2"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="4a39e9a1-21eb-48a8-b777-03cb6eff1e14" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="bbc3b4b2-3ad3-44f9-872b-4bf56e43e7cb" name="statusIncident - success1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IncidentServiceSoapBinding</con:interface><con:operation>statusIncident</con:operation><con:request name="statusIncident - success1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="cdd2d1bc-047a-410c-9b0a-00df3ff84d15"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://incident.cxf.camel.nileshpoc.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <inc:inputStatusIncident>\r
+         <incidentId>?</incidentId>\r
+      </inc:inputStatusIncident>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="b5cd2314-f85e-480e-a080-c5e22c9b133b" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incident.cxf.camel.nileshpoc.com/statusIncident"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="SOAP Request-fail" id="98a3b3ed-0089-41aa-8ce0-ed0cf89e5c6c"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IncidentServiceSoapBinding</con:interface><con:operation>statusIncident</con:operation><con:request name="SOAP Request-fail" id="464ee194-fef6-4f77-b928-ee4243fe90b8"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8006/service/cxf/report</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://incident.cxf.camel.nileshpoc.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <inc:inputStatusIncident>\r
+         <incidentId>?</incidentId>\r
+      </inc:inputStatusIncident>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c42df13a-0127-4e2b-b41d-5c61fca9f85a"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
