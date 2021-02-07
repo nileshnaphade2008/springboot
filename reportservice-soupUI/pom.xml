@@ -20,6 +20,7 @@
 					<printReport>true</printReport>
 					<exportAll>true</exportAll>
 					<testFailIgnore>true</testFailIgnore>
+					<junitReport>true</junitReport>
 				</configuration>
 				<executions>
 					<execution>
