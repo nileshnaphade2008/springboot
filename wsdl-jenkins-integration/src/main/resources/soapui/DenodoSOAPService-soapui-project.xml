@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="6f96c93a-a65e-49cc-ab76-e4dae1deb530" activeEnvironment="Default" name="DenodoSOAPService" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="053d3383-2b4e-4599-aa3b-888108613dfe" wsaVersion="NONE" name="employeedtSoapBinding" type="wsdl" bindingName="{http://com/denodo/webservice/employeedt}employeedtSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:9090/server/tutorial/employeedt/services/employeedt?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:9090/server/tutorial/employeedt/services/employeedt?wsdl"><con:part><con:url>http://localhost:9090/server/tutorial/employeedt/services/employeedt?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://com/denodo/webservice/employeedt" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://com/denodo/webservice/employeedt" xmlns:intf="http://com/denodo/webservice/employeedt" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--WSDL created by Apache Axis version: 1.4.1
+Built on jun 30, 2020 (10:07:35 CEST)-->
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://com/denodo/webservice/employeedt" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="GetEmployeeDt">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="EMPLOYEE_ID" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <element name="GetEmployeeDt" type="impl:GetEmployeeDt"/>
+      <complexType name="BV_EMPLOEE_EMP_DEPT_INNERJOINReturnRow">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="EMPLOYEE_ID" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="EMPLOYEE_NAME" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="EMPLOYEE_DOB" type="xsd:date"/>
+          <element maxOccurs="1" minOccurs="0" name="DEPARTMENT_ID" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="DEPARTMENT_NAME" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <element name="BV_EMPLOEE_EMP_DEPT_INNERJOINReturn">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:BV_EMPLOEE_EMP_DEPT_INNERJOINReturnRow"/>
+          </sequence>
+        </complexType>
+      </element>
+      <complexType name="ArrayOfBV_EMPLOEE_EMP_DEPT_INNERJOINReturnRow">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:BV_EMPLOEE_EMP_DEPT_INNERJOINReturnRow"/>
+        </sequence>
+      </complexType>
+      <complexType name="_QueryExecutionError">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="errorCode" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="errorMessage" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArrayOf_QueryExecutionError">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:_QueryExecutionError"/>
+        </sequence>
+      </complexType>
+      <complexType name="GetEmployeeDtException">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="data" type="impl:ArrayOfBV_EMPLOEE_EMP_DEPT_INNERJOINReturnRow"/>
+          <element maxOccurs="1" minOccurs="0" name="error" type="impl:ArrayOf_QueryExecutionError"/>
+        </sequence>
+      </complexType>
+      <element name="GetEmployeeDtException" type="impl:GetEmployeeDtException"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="GetEmployeeDtException">
+    <wsdl:part element="impl:GetEmployeeDtException" name="GetEmployeeDtException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeDtResponse">
+    <wsdl:part element="impl:BV_EMPLOEE_EMP_DEPT_INNERJOINReturn" name="BV_EMPLOEE_EMP_DEPT_INNERJOINReturn"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeDtRequest">
+    <wsdl:part element="impl:GetEmployeeDt" name="GetEmployeeDt"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="employeedt">
+    <wsdl:operation name="getEmployeeDt" parameterOrder="GetEmployeeDt">
+      <wsdl:input message="impl:getEmployeeDtRequest" name="getEmployeeDtRequest"></wsdl:input>
+      <wsdl:output message="impl:getEmployeeDtResponse" name="getEmployeeDtResponse"></wsdl:output>
+      <wsdl:fault message="impl:GetEmployeeDtException" name="GetEmployeeDtException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="employeedtSoapBinding" type="impl:employeedt">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getEmployeeDt">
+      <wsdlsoap:operation soapAction="http://localhost:8080/employeedt/services/employeedt/getEmployeeDt"/>
+      <wsdl:input name="getEmployeeDtRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEmployeeDtResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GetEmployeeDtException">
+        <wsdlsoap:fault name="GetEmployeeDtException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="employeedtService">
+    <wsdl:port binding="impl:employeedtSoapBinding" name="employeedt">
+      <wsdlsoap:address location="http://localhost:9090/server/tutorial/employeedt/services/employeedt"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:9090/server/tutorial/employeedt/services/employeedt</con:endpoint></con:endpoints><con:operation id="01f3e2ab-4493-495a-abbb-75b87a34b138" isOneWay="false" action="http://localhost:8080/employeedt/services/employeedt/getEmployeeDt" name="getEmployeeDt" bindingOperationName="getEmployeeDt" type="Request-Response" outputName="getEmployeeDtResponse" inputName="getEmployeeDtRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c2358207-ae40-4ce4-bc43-b3b8d047b3e3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9090/server/tutorial/employeedt/services/employeedt</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:emp="http://com/denodo/webservice/employeedt">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <emp:GetEmployeeDt>\r
+         <!--Optional:-->\r
+         <emp:EMPLOYEE_ID>4</emp:EMPLOYEE_ID>\r
+      </emp:GetEmployeeDt>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:8080/employeedt/services/employeedt/getEmployeeDt"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

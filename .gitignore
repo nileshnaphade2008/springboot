@@ -1,0 +1,8 @@
+
+wsdl-jenkins-integration/.classpath
+wsdl-jenkins-integration/.project
+wsdl-jenkins-integration/.settings/org.eclipse.jdt.core.prefs
+wsdl-jenkins-integration/.settings/org.eclipse.m2e.core.prefs
+wsdl-jenkins-integration/global-groovy.log
+wsdl-jenkins-integration/soapui-errors.log
+wsdl-jenkins-integration/soapui.log
